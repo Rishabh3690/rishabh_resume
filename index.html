@@ -3,82 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Rishabh Singh — Curious Student, Java Debugger, Chess Player. Personal portfolio built as a Windows 11 desktop.">
-<meta name="theme-color" content="#0a0a1a">
 <title>ऋषभ सिंह | Rishabh OS</title>
-
-<!-- ═══════════════════════════════════════════════════════════════
-     STYLESHEET
-     ═══════════════════════════════════════════════════════════════ -->
 <link rel="stylesheet" href="styles.css">
-
-<!-- ═══════════════════════════════════════════════════════════════
-     FONTS
-     Inter        → Main UI text
-     Fira Code    → Code / terminal / numbers
-     Yuji Syuku   → Japanese Bankai text
-     Zen Antique  → Bankai romaji
-     Caveat       → Hero script font (chiller / handwriting style)
-     Kalam        → Hindi fallback
-     ═══════════════════════════════════════════════════════════════ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Yuji+Syuku&family=Zen+Antique&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-
 <body data-theme="dark" data-bg="astra">
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     1. BOOT SCREEN
-     Shows on first load. Hidden after 2.4s (script.js).
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- BOOT SCREEN -->
 <div class="boot-screen" id="boot-screen">
-    <svg class="boot-logo" viewBox="0 0 24 24" width="80" height="80" fill="currentColor" aria-hidden="true">
+    <svg class="boot-logo" viewBox="0 0 24 24" width="80" height="80" fill="currentColor">
         <path d="M3 5.5L10.5 4.3V11.5H3V5.5ZM3 12.5H10.5V19.7L3 18.5V12.5ZM11.5 4.1L21 2.5V11.5H11.5V4.1ZM11.5 12.5H21V21.5L11.5 19.9V12.5Z"/>
     </svg>
-    <div class="boot-spinner" aria-label="Loading"></div>
-    <div class="boot-text">Starting Rishabh OS</div>
+    <div class="boot-spinner"></div>
+    <div class="boot-text">Initializing Dark Web Protocol...</div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     2. BACKGROUND LAYER
-     - astra-canvas:   Celestial body (Astra galaxy, Tokyo black hole, etc.)
-     - effect-canvas:  Bankai particle effects
-     - bg-overlay:     Dark vignette
-     - theme-effects:  Theme color tint overlay
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- BACKGROUND LAYER -->
 <div class="background-layer" id="bg-layer">
-    <canvas id="astra-canvas" aria-hidden="true"></canvas>
-    <canvas id="effect-canvas" aria-hidden="true"></canvas>
-    <div class="bg-overlay" aria-hidden="true"></div>
-    <div class="theme-effects" id="theme-effects" aria-hidden="true"></div>
+    <canvas id="astra-canvas"></canvas>
+    <canvas id="effect-canvas"></canvas>
+    <div class="bg-overlay"></div>
+    <div class="theme-effects" id="theme-effects"></div>
 </div>
 
-<!-- Bankai-specific background (appears only when Bankai is active) -->
-<div class="bankai-bg" id="bankai-bg" aria-hidden="true"></div>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     3. HERO TEXT — Typewriter animation
-     Cycles between "Rishabh Singh" (English) and "ऋषभ सिंह" (Hindi)
-     with backspace effect between transitions.
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO TEXT (Typewriter) -->
 <div class="desktop" id="hero-container">
     <div class="hero-text">
         <h1 class="hero-title english-mode" id="hero-title">
-            <span id="hero-text-display"></span><span class="hero-cursor" aria-hidden="true">▌</span>
+            <span id="hero-text-display"></span><span class="hero-cursor">▌</span>
         </h1>
     </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     4. DESKTOP WIDGETS
-     ═══════════════════════════════════════════════════════════════ -->
-
-<!-- Top-left: Clock widget -->
+<!-- DESKTOP WIDGETS -->
 <div class="desk-widgets-top">
     <div class="desk-clock">
         <div class="desk-clock-time" id="desk-clock-time">00:00</div>
@@ -87,18 +46,17 @@
     </div>
 </div>
 
-<!-- Top-right: Info widgets -->
 <div class="desk-widgets-right">
     <div class="desk-widget">
-        <div class="dw-icon">☀️</div>
+        <div class="dw-icon">💀</div>
         <div class="dw-text">
-            <div class="dw-title">Varanasi</div>
-            <div class="dw-value">28°C</div>
-            <div class="dw-sub">Partly cloudy</div>
+            <div class="dw-title">Status</div>
+            <div class="dw-value">Online</div>
+            <div class="dw-sub">Dark Web Active</div>
         </div>
     </div>
     <div class="desk-widget">
-        <div class="dw-icon">🚀</div>
+        <div class="dw-icon">🎯</div>
         <div class="dw-text">
             <div class="dw-title">Current Focus</div>
             <div class="dw-value">Java GUI</div>
@@ -115,288 +73,91 @@
     </div>
 </div>
 
-<!-- Desktop icons column (left side, below clock) -->
+<!-- DESKTOP ICONS -->
 <div class="desktop-icons-col" id="desktop-icons-col"></div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     5. JJK SYSTEM
-     - Controls: Blue / Red / Purple buttons (shown only in JJK mode)
-     - Overlay:  Cinematic canvas + prompt
-     - Orbs:     Attached orbs during sequence
-     ═══════════════════════════════════════════════════════════════ -->
-
+<!-- JJK CONTROLS -->
 <div class="jjk-controls" id="jjk-controls">
-    <button class="jjk-btn blue" onclick="launchJJK('blue')" aria-label="Lapse: Blue">
-        <span class="jjk-icon">🔵</span>
-        <span class="jjk-label">Lapse: Blue</span>
-    </button>
-    <button class="jjk-btn red" onclick="launchJJK('red')" aria-label="Reversal: Red">
-        <span class="jjk-icon">🔴</span>
-        <span class="jjk-label">Reversal: Red</span>
-    </button>
-    <button class="jjk-btn purple" onclick="launchJJK('purple')" aria-label="Hollow Purple">
-        <span class="jjk-icon">🟣</span>
-        <span class="jjk-label">Hollow Purple</span>
-    </button>
+    <button class="jjk-btn blue" onclick="launchJJK('blue')">🔵 Blue</button>
+    <button class="jjk-btn red" onclick="launchJJK('red')">🔴 Red</button>
+    <button class="jjk-btn purple" onclick="launchJJK('purple')">🟣 Hollow Purple</button>
 </div>
 
-<div class="jjk-overlay" id="jjk-overlay" aria-hidden="true">
-    <canvas class="jjk-canvas" id="jjk-canvas"></canvas>
-    <div class="jjk-prompt-overlay" id="jjk-prompt-overlay">
-        <div class="jjk-prompt-text" id="jjk-prompt-text">Click anywhere</div>
-    </div>
-    <div class="jjk-flash" id="jjk-flash"></div>
-</div>
+<!-- JJK ORBS LAYER -->
+<div class="jjk-orbs-layer" id="jjk-orbs-layer"></div>
 
-<div class="jjk-orbs-layer" id="jjk-orbs-layer" aria-hidden="true"></div>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     6. DEATH NOTE SYSTEM
-     - Apple:          Floating clickable element
-     - Hint:           Text below apple
-     - Shatter canvas: Instant glass shatter effect
-     - Cursors:        Custom cursors for Light and L
-     - Scene:          Friendship → Fight mode
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="dn-apple" id="dn-apple" onclick="advanceDeathNote()" role="button" tabindex="0" aria-label="Click the apple">
-    🍎
-</div>
-
-<div class="dn-hint" id="dn-hint">Click the apple</div>
-
-<canvas class="dn-shatter-canvas" id="dn-shatter-canvas" aria-hidden="true"></canvas>
-
-<!-- Custom cursors for Death Note characters -->
-<div class="dn-cursor dn-cursor-light" id="dn-cursor-light" aria-hidden="true">👁️</div>
-<div class="dn-cursor dn-cursor-l" id="dn-cursor-l" aria-hidden="true">🔍</div>
-
-<!-- Death Note scene -->
-<div class="dn-scene" id="dn-scene" aria-hidden="true">
-
-    <!-- Stage 1: Friendship (both together) -->
-    <div class="dn-friendship" id="dn-friendship">
-        <img src="characters/light-and-l.png"
-             alt="Light Yagami and L standing together"
-             class="dn-img-friendship"
-             onerror="this.style.display='none'">
-    </div>
-
-    <!-- Stage 2: Fight (Light LEFT, L RIGHT) -->
-    <div class="dn-fight" id="dn-fight">
-
-        <!-- LIGHT (LEFT SIDE) -->
-        <div class="dn-char light" data-char="light">
-            <div class="dn-char-wrapper">
-                <img src="characters/light-serious.png"
-                     alt="Light Yagami - Kira mode"
-                     class="dn-img-serious"
-                     onerror="this.style.display='none'">
-                <div class="dn-aura dn-aura-red"></div>
-            </div>
-            <div class="dn-name">Light Yagami</div>
-            <div class="dn-title">Kira</div>
-        </div>
-
-        <!-- VS divider -->
-        <div class="dn-vs" aria-hidden="true">VS</div>
-
-        <!-- L (RIGHT SIDE) -->
-        <div class="dn-char l" data-char="l">
-            <div class="dn-char-wrapper">
-                <img src="characters/l-serious.png"
-                     alt="L in fight mode"
-                     class="dn-img-serious"
-                     onerror="this.style.display='none'">
-                <div class="dn-aura dn-aura-blue"></div>
-            </div>
-            <div class="dn-name">L</div>
-            <div class="dn-title">Detective</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Hidden audio for Death Note background music -->
-<audio id="dn-music" loop preload="none"></audio>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     7. SWORD BUTTON (Bankai trigger)
-     Positioned bottom-center. Each Bankai has its own sword design.
-     Hidden when Bankai is active OR when any window is open.
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="sword-container" id="sword-container">
-    <button class="sword-btn" id="sword-btn" aria-label="Release Bankai">
-        <div class="sword-icon" id="sword-icon">
-            <!-- Default sword: Tensa Zangetsu style -->
-            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="sword-blade-default" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#f0f0f0"/>
-                        <stop offset="50%" stop-color="#a0a0a0"/>
-                        <stop offset="100%" stop-color="#404040"/>
-                    </linearGradient>
-                </defs>
-                <path d="M30 4 L33 10 L33 42 L30 46 L27 42 L27 10 Z" fill="url(#sword-blade-default)" stroke="#222" stroke-width="0.5"/>
-                <rect x="20" y="44" width="20" height="3" rx="1.5" fill="#333"/>
-                <rect x="27" y="47" width="6" height="11" rx="1" fill="#1a1a1a" stroke="#333" stroke-width="0.5"/>
-                <circle cx="30" cy="58" r="2" fill="#333"/>
-            </svg>
-        </div>
-        <div class="sword-glow" id="sword-glow"></div>
-        <div class="sword-tooltip">Release Bankai</div>
-    </button>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     8. BANKAI CINEMATIC OVERLAY
-     Shown during Bankai release sequence.
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="glitch-overlay" id="glitch-overlay" aria-hidden="true"></div>
-
-<div class="bankai-overlay" id="bankai-overlay" aria-hidden="true">
-    <div class="bankai-flash"></div>
-    <div class="bankai-jp-text" id="bankai-jp"></div>
-    <div class="bankai-romaji-text" id="bankai-romaji"></div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     9. CUSTOM CURSOR (Bankai mode only)
-     Follows mouse with lerp. Each Bankai has its own cursor.
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="bankai-cursor" id="bankai-cursor" aria-hidden="true"></div>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     10. TASKBAR (Windows 11 style, centered)
-     - Center: Start button + pinned apps
-     - Right:  System tray (sound, theme, print, clock, date)
-     ═══════════════════════════════════════════════════════════════ -->
-
-<nav class="taskbar" id="taskbar" role="navigation" aria-label="Taskbar">
-
+<!-- TASKBAR -->
+<nav class="taskbar" id="taskbar">
     <div class="taskbar-center">
-        <!-- Start button -->
         <button class="tb-btn" id="start-btn" aria-label="Start Menu">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                 <path d="M3 5.5L10.5 4.3V11.5H3V5.5ZM3 12.5H10.5V19.7L3 18.5V12.5ZM11.5 4.1L21 2.5V11.5H11.5V4.1ZM11.5 12.5H21V21.5L11.5 19.9V12.5Z"/>
             </svg>
         </button>
-
-        <!-- Pinned apps (injected by JS) -->
         <div class="taskbar-apps" id="taskbar-apps"></div>
     </div>
-
     <div class="taskbar-right">
         <div class="sys-tray">
-            <span id="sound-toggle" title="Toggle Sound" role="button" tabindex="0">🔊</span>
-            <span id="theme-toggle" title="Toggle Theme" role="button" tabindex="0">🌙</span>
-            <span id="print-icon" title="Print / Download PDF" role="button" tabindex="0">📄</span>
+            <span id="sound-toggle" title="Sound">🔊</span>
+            <span id="theme-toggle" title="Theme">🌙</span>
+            <span id="print-icon" title="Print">📄</span>
             <span id="clock">00:00</span>
             <span id="date">01/01/2026</span>
         </div>
     </div>
-
 </nav>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     11. START MENU
-     Search bar + grid of all apps
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="start-menu" id="start-menu" role="dialog" aria-label="Start Menu">
-    <input type="text" id="start-search" placeholder="Search apps..." aria-label="Search apps" autocomplete="off">
+<!-- START MENU -->
+<div class="start-menu" id="start-menu">
+    <input type="text" id="start-search" placeholder="Search apps...">
     <div class="start-grid" id="start-grid"></div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     12. WINDOWS CONTAINER
-     All app windows get injected here by JS
-     ═══════════════════════════════════════════════════════════════ -->
-
+<!-- WINDOWS CONTAINER -->
 <div class="windows-container" id="windows-container"></div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     13. SETTINGS MODAL
-     Three tabs: Wallpaper, Anime Themes, General
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="settings-modal" id="settings-modal" role="dialog" aria-label="Settings">
+<!-- SETTINGS MODAL -->
+<div class="settings-modal" id="settings-modal">
     <div class="settings-window">
-
         <div class="settings-header">
             <div class="window-controls">
-                <span class="control close" id="close-settings" role="button" aria-label="Close Settings"></span>
-                <span class="control minimize" aria-hidden="true"></span>
-                <span class="control maximize" aria-hidden="true"></span>
+                <span class="control close" id="close-settings"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
             </div>
             <div class="window-title">Settings</div>
         </div>
-
         <div class="settings-body">
             <div class="settings-sidebar">
-                <div class="settings-tab active" data-tab="wallpaper" role="tab">Wallpaper</div>
-                <div class="settings-tab" data-tab="anime" role="tab">Anime Themes</div>
-                <div class="settings-tab" data-tab="general" role="tab">General</div>
+                <div class="settings-tab active" data-tab="wallpaper">Wallpaper</div>
+                <div class="settings-tab" data-tab="anime">Anime Theme</div>
+                <div class="settings-tab" data-tab="general">General</div>
             </div>
             <div class="settings-content" id="settings-content"></div>
         </div>
-
     </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     14. COMMAND PALETTE (Ctrl + K)
-     Fuzzy search for apps, commands, Bankai, themes
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="cmd-overlay" id="cmd-overlay" role="dialog" aria-label="Command Palette">
+<!-- COMMAND PALETTE -->
+<div class="cmd-overlay" id="cmd-overlay">
     <div class="cmd-palette">
-
         <div class="cmd-input-wrap">
-            <span class="cmd-icon" aria-hidden="true">🔍</span>
-            <input type="text"
-                   id="cmd-input"
-                   placeholder="Type a command or app name..."
-                   autocomplete="off"
-                   spellcheck="false"
-                   aria-label="Command search">
-            <span class="cmd-hint-badge" aria-hidden="true">ESC</span>
+            <span class="cmd-icon">🔍</span>
+            <input type="text" id="cmd-input" placeholder="Type a command or app name..." autocomplete="off" spellcheck="false">
+            <span class="cmd-hint-badge">ESC</span>
         </div>
-
         <div class="cmd-results" id="cmd-results"></div>
-
-        <div class="cmd-footer" aria-hidden="true">
+        <div class="cmd-footer">
             <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
             <span><kbd>↵</kbd> select</span>
             <span><kbd>esc</kbd> close</span>
         </div>
-
     </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     15. NOTIFICATION CENTER
-     Slide-out panel from right. Click clock in taskbar to open.
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="notif-panel-back" id="notif-back" aria-hidden="true"></div>
-
-<aside class="notif-panel" id="notif-panel" role="complementary" aria-label="Notifications">
-
+<!-- NOTIFICATIONS -->
+<div class="notif-panel-back" id="notif-back"></div>
+<aside class="notif-panel" id="notif-panel">
     <div class="notif-head">
         <div>
             <div class="notif-title">Notifications</div>
@@ -404,86 +165,49 @@
         </div>
         <button class="notif-clear" id="notif-clear">Clear all</button>
     </div>
-
     <div class="notif-list" id="notif-list"></div>
-
 </aside>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     16. LOCK SCREEN (Ctrl + L)
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="lock-screen" id="lock-screen" role="dialog" aria-label="Lock Screen">
-
+<!-- LOCK SCREEN -->
+<div class="lock-screen" id="lock-screen">
     <div class="lock-content">
         <div class="lock-time" id="lock-time">00:00</div>
         <div class="lock-date" id="lock-date">Monday, 1 January 2026</div>
         <div class="lock-hint">Press any key or click to unlock</div>
     </div>
-
     <div class="lock-footer">
         <span class="lock-user">ऋषभ सिंह</span>
         <span class="lock-status">🔒 Locked</span>
     </div>
-
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     17. WIDGET PANEL
-     Right-side slide-out with clock, weather, quote, quick toggles
-     ═══════════════════════════════════════════════════════════════ -->
-
-<div class="widget-back" id="widget-back" aria-hidden="true"></div>
-
-<aside class="widget-panel" id="widget-panel" role="complementary" aria-label="Widgets">
-
+<!-- WIDGET PANEL -->
+<div class="widget-back" id="widget-back"></div>
+<aside class="widget-panel" id="widget-panel">
     <div class="wp-head">
         <div class="wp-title">Widgets</div>
-        <button class="wp-close" id="wp-close" aria-label="Close">✕</button>
+        <button class="wp-close" id="wp-close">✕</button>
     </div>
-
     <div class="wp-scroll">
-
-        <!-- Clock widget -->
         <div class="wp-widget wp-clock-widget">
             <div class="wp-clock-time" id="wp-clock-time">00:00:00</div>
             <div class="wp-clock-date" id="wp-clock-date">1 Jan 2026</div>
         </div>
-
-        <!-- Now Playing widget -->
         <div class="wp-widget wp-music">
             <div class="wp-widget-head">Now Playing</div>
             <div class="wp-music-body">
                 <div class="wp-album">🎵</div>
                 <div class="wp-track">
-                    <div class="wp-track-name">Agudo Mágico 3</div>
-                    <div class="wp-track-artist">TikTok Hits</div>
+                    <div class="wp-track-name">No track</div>
+                    <div class="wp-track-artist">Select a song</div>
                     <div class="wp-progress"><div class="wp-progress-fill"></div></div>
                 </div>
             </div>
         </div>
-
-        <!-- Quote of the day -->
         <div class="wp-widget wp-quote">
-            <div class="wp-widget-head">Quote of the Day</div>
+            <div class="wp-widget-head">Hacker Wisdom</div>
             <div class="wp-quote-text" id="wp-quote">Loading...</div>
         </div>
-
-        <!-- Weather widget -->
-        <div class="wp-widget wp-weather">
-            <div class="wp-widget-head">Varanasi</div>
-            <div class="wp-weather-body">
-                <div class="wp-weather-temp">28°</div>
-                <div class="wp-weather-info">
-                    <div class="wp-weather-desc">Partly Cloudy</div>
-                    <div class="wp-weather-hi">H: 32° · L: 22°</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick toggles -->
         <div class="wp-widget">
             <div class="wp-widget-head">Quick Toggles</div>
             <div class="wp-toggles">
@@ -493,35 +217,21 @@
                 <button class="wp-toggle" id="wp-toggle-cmd">⌨️<span>Ctrl+K</span></button>
             </div>
         </div>
-
     </div>
-
 </aside>
+<button class="wp-trigger" id="wp-trigger" title="Open widgets">📊</button>
 
-<!-- Floating trigger button for widget panel -->
-<button class="wp-trigger" id="wp-trigger" title="Open Widgets" aria-label="Open Widgets">📊</button>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     18. PRINT VIEW (Desktop Resume)
-     Shown only when user hits Ctrl+P or clicks the 📄 icon.
-     Hidden on screen (display: none).
-     ═══════════════════════════════════════════════════════════════ -->
-
+<!-- PRINT VIEW (Desktop Resume) -->
 <div class="print-view" id="print-view">
-
     <header class="print-header">
         <h1>Rishabh Singh</h1>
         <p class="print-subtitle">Curious Student | Java Debugger | Professional "What-If" Asker</p>
         <p class="print-contact">Mughalsarai, Varanasi, UP · virganox3690@gmail.com · github.com/Rishabh3690</p>
     </header>
-
     <section class="print-section">
         <h2>01 // About Me</h2>
-        <p>Class 9 student with an engineering mindset — into Java, computers, chess, problem-solving, science, and building things. Worked on Java programs (ATM, calculator, games) and larger projects like StudyOS, plus Python, HTML, Scratch, Excel, and video editing.</p>
-        <p>Approach to learning: not "what is this?" but "why is this happening, what is wrong, can I improve it?". Biggest strength is a strong "I want to figure this thing out" instinct.</p>
+        <p>Class 9 student with an engineering mindset — into Java, computers, chess, problem-solving, science, and building things.</p>
     </section>
-
     <section class="print-section">
         <h2>02 // Skills</h2>
         <div class="print-skill"><span>Java &amp; Programming</span><span>80%</span></div>
@@ -531,54 +241,24 @@
         <div class="print-skill"><span>Chess &amp; Strategic Thinking</span><span>95%</span></div>
         <div class="print-skill"><span>Communication &amp; Presentation</span><span>70%</span></div>
     </section>
-
     <section class="print-section">
         <h2>03 // Experience</h2>
-        <div class="print-exp">
-            <strong>Inspire-Manak</strong> · 2025–Present<br>
-            Competitive environment focused on innovation, problem-solving, and teamwork.
-        </div>
-        <div class="print-exp">
-            <strong>Cordorra Hackathon</strong> · 2025–Present<br>
-            Team member contributing to creative direction and technical problem-solving.
-        </div>
+        <div class="print-exp"><strong>Inspire-Manak</strong> · 2025–Present<br>Competitive environment focused on innovation, problem-solving, and teamwork.</div>
+        <div class="print-exp"><strong>Cordorra Hackathon</strong> · 2025–Present<br>Team member contributing to creative direction and technical problem-solving.</div>
     </section>
-
     <section class="print-section">
         <h2>04 // Projects</h2>
-        <div class="print-exp">
-            <strong>Personal Data API</strong> (Java, JSON)<br>
-            Monitors personal data and structures it into a readable format.
-        </div>
-        <div class="print-exp">
-            <strong>Hinglish Programming Language</strong> (Python, NLP)<br>
-            A programming language using a funny type of Hinglish. Because <code>if (x &gt; 5)</code> is boring, <code>agar (x &gt; 5)</code> is revolutionary.
-        </div>
-        <div class="print-exp">
-            <strong>Rishabh OS</strong> (HTML, CSS, JavaScript)<br>
-            This portfolio website — a Windows 11-style desktop experience in the browser.
-        </div>
+        <div class="print-exp"><strong>Personal Data API</strong> (Java, JSON)<br>Monitors personal data and structures it into a readable format.</div>
+        <div class="print-exp"><strong>Hinglish Programming Language</strong> (Python, NLP)<br>A programming language using funny Hinglish.</div>
     </section>
-
     <section class="print-section">
-        <h2>05 // Education &amp; Contact</h2>
-        <div class="print-exp"><strong>Class 9</strong> · In School</div>
+        <h2>05 // Contact</h2>
         <p>Email: virganox3690@gmail.com</p>
         <p>GitHub: github.com/Rishabh3690</p>
-        <p>Location: Mughalsarai, Varanasi, UP</p>
-        <p>Languages: Hindi, English</p>
     </section>
-
-    <footer class="print-footer">Last updated: 2026-09-23</footer>
-
+    <footer class="print-footer">Last updated: 2026-09-24</footer>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     19. SCRIPT
-     ═══════════════════════════════════════════════════════════════ -->
-
 <script src="script.js"></script>
-
 </body>
 </html>
